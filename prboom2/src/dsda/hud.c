@@ -137,7 +137,7 @@ void dsda_DrawIntermissionTime(void) {
 static dboolean dsda_ExHudVisible(void) {
   return dsda_ExHud() && // extended hud turned on
          viewheight != SCREENHEIGHT && // not zoomed in
-         (!(automapmode & am_active) || (automapmode & am_overlay)); // automap inactive
+         !(automapmode & am_active); // automap inactive
 }
 
 static void dsda_UpdateExHud(void) {
