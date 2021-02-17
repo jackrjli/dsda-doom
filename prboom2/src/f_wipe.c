@@ -47,6 +47,7 @@
 #include "gl_struct.h"
 #endif
 #include "e6y.h"//e6y
+#include "dsda/settings.h"
 
 //
 // SCREEN WIPE PACKAGE
@@ -188,7 +189,7 @@ static int wipe_exitMelt(int ticks)
 
 int wipe_StartScreen(void)
 {
-  if(!render_wipescreen||wasWiped) return 0;//e6y
+  if (wasWiped || dsda_SkipWipe()) return 0;//e6y
   wasWiped = true;//e6y
 
 #ifdef GL_DOOM
@@ -218,7 +219,7 @@ int wipe_StartScreen(void)
 
 int wipe_EndScreen(void)
 {
-  if(!render_wipescreen||!wasWiped) return 0;//e6y
+  if (!wasWiped || dsda_SkipWipe()) return 0;//e6y
   wasWiped = false;//e6y
 
 #ifdef GL_DOOM
@@ -251,7 +252,7 @@ int wipe_EndScreen(void)
 int wipe_ScreenWipe(int ticks)
 {
   static dboolean go;                               // when zero, stop the wipe
-  if(!render_wipescreen) return 0;//e6y
+  if (dsda_SkipWipe()) return 0;//e6y
   if (!go)                                         // initial stuff
     {
       go = 1;

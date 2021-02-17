@@ -221,7 +221,7 @@ static void D_Wipe(void)
   dboolean done;
   int wipestart = I_GetTime () - 1;
 
-  if (!render_wipescreen || dsda_SkipWipe()) return;//e6y
+  if (dsda_SkipWipe()) return;//e6y
   do
     {
       int nowtime, tics;
@@ -420,6 +420,7 @@ void D_Display (fixed_t frac)
     // wipe update
     wipe_EndScreen();
     D_Wipe();
+    dsda_SkipNextWipeFinish();
   }
 
   // e6y
