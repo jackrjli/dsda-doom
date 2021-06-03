@@ -1877,7 +1877,8 @@ static void D_DoomMainSetup(void)
 
   // add wad files from autoload directory before wads from -file parameter
 
-  D_AutoloadIWadDir();
+  if (!M_CheckParm("-noautoload"))
+    D_AutoloadIWadDir();
 
   // add any files specified on the command line with -file wadfile
   // to the wad list
@@ -1953,7 +1954,8 @@ static void D_DoomMainSetup(void)
 
   // add wad files from autoload PWAD directories
 
-  D_AutoloadPWadDir();
+  if (!M_CheckParm("-noautoload"))
+    D_AutoloadPWadDir();
 
   // CPhipps - move up netgame init
   //jff 9/3/98 use logical output routine
@@ -2030,7 +2032,8 @@ static void D_DoomMainSetup(void)
 
   // process deh files from autoload directory before deh in wads from -file parameter
 
-  D_AutoloadDehIWadDir();
+  if (!M_CheckParm("-noautoload"))
+    D_AutoloadDehIWadDir();
 
   if (!M_CheckParm ("-nodeh"))
     for (p = -1; (p = W_ListNumFromName("DEHACKED", p)) >= 0; )
@@ -2041,7 +2044,8 @@ static void D_DoomMainSetup(void)
 
   // process .deh files from PWADs autoload directories
 
-  D_AutoloadDehPWadDir();
+  if (!M_CheckParm("-noautoload"))
+    D_AutoloadDehPWadDir();
 
   // Load command line dehacked patches after WAD dehacked patches
 
