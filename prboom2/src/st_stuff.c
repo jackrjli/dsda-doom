@@ -897,20 +897,11 @@ void ST_Drawer(dboolean statusbaron, dboolean refresh, dboolean fullmenu)
   ST_doPaletteStuff();  // Do red-/gold-shifts from damage/items
 
   if (statusbaron) {
-    if (st_firsttime || (V_IsOpenGLMode()))
-    {
-      /* If just after ST_Start(), refresh all */
-      st_firsttime = false;
-      ST_refreshBackground(); // draw status bar background to off-screen buff
-      if (!fullmenu)
-        ST_drawWidgets(true); // and refresh all widgets
-    }
-    else
-    {
-      /* Otherwise, update as little as possible */
-      if (!fullmenu)
-        ST_drawWidgets(false); // update all widgets
-    }
+    /* If just after ST_Start(), refresh all */
+    st_firsttime = false;
+    ST_refreshBackground(); // draw status bar background to off-screen buff
+    if (!fullmenu)
+      ST_drawWidgets(true); // and refresh all widgets
   }
 
   V_EndUIDraw();
