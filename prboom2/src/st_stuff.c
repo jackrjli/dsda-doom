@@ -887,8 +887,7 @@ void ST_Drawer(dboolean statusbaron, dboolean refresh, dboolean fullmenu)
 
   if (statusbaron) {
     ST_refreshBackground(); // draw status bar background to off-screen buff
-    if (!fullmenu)
-      ST_drawWidgets(true); // and refresh all widgets
+    ST_drawWidgets(true);   // and refresh all widgets
   }
 
   V_EndUIDraw();
