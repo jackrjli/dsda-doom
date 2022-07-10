@@ -256,9 +256,6 @@ int ST_SCALED_OFFSETX;
 // main player in game
 static player_t *plyr;
 
-// ST_Start() has just been called
-static dboolean st_firsttime;
-
 // used to execute ST_Init() only once
 static int veryfirsttime = 1;
 
@@ -442,7 +439,6 @@ dboolean ST_Responder(event_t *ev)
         {
         case AM_MSGENTERED:
           st_gamestate = AutomapState;
-          st_firsttime = true;
           break;
 
         case AM_MSGEXITED:
@@ -873,7 +869,6 @@ static void ST_drawWidgets(dboolean refresh)
 
 void ST_SetResolution(void)
 {
-  st_firsttime = true;
   R_FillBackScreen();
 }
 
@@ -888,17 +883,9 @@ void ST_Drawer(dboolean statusbaron, dboolean refresh, dboolean fullmenu)
     return;
   }
 
-  /* cph - let status bar on be controlled
-   * completely by the call from D_Display
-   * proff - really do it
-   */
-  st_firsttime = st_firsttime || refresh || fullmenu;
-
   ST_doPaletteStuff();  // Do red-/gold-shifts from damage/items
 
   if (statusbaron) {
-    /* If just after ST_Start(), refresh all */
-    st_firsttime = false;
     ST_refreshBackground(); // draw status bar background to off-screen buff
     if (!fullmenu)
       ST_drawWidgets(true); // and refresh all widgets
@@ -1015,7 +1002,6 @@ static void ST_initData(void)
 {
   int i;
 
-  st_firsttime = true;
   plyr = &players[displayplayer];            // killough 3/7/98
 
   st_clock = 0;

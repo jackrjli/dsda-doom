@@ -937,7 +937,6 @@ dboolean SB_Responder(event_t * ev)
   //       {
   //       case AM_MSGENTERED:
   //         st_gamestate = AutomapState;
-  //         st_firsttime = true;
   //         break;
   //
   //       case AM_MSGEXITED:
